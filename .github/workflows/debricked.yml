@@ -8,6 +8,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: debricked/actions@v3
+      - name: Install Debricked CLI
+        run: |
+          curl -L https://github.com/debricked/cli/releases/latest/download/cli_linux_x86_64.tar.gz | tar -xz debricked
+          ./debricked --version
+
+      - name: Run Scan
+        run: |
+          run: |
+          ./debricked scan api/ -r api-service -c $(git rev-parse HEAD) -t $DEBRICKED_TOKEN
+          ./debricked scan web/ -r web-service -c $(git rev-parse HEAD) -t $DEBRICKED_TOKEN
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
+        
+        
