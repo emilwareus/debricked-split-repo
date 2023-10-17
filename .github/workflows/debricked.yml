@@ -19,9 +19,8 @@ jobs:
       # You can also split these out to two separate actions to make the results easier to consume visually. 
       - name: Run Scan
         run: |
-          run: |
-          ./debricked scan api/ -r api-service -c $(git rev-parse HEAD) -t $DEBRICKED_TOKEN
-          ./debricked scan web/ -r web-service -c $(git rev-parse HEAD) -t $DEBRICKED_TOKEN
+          ./debricked scan api/ -r api-service
+          ./debricked scan web/ -r web-service
         env:
           DEBRICKED_TOKEN: ${{ secrets.DEBRICKED_TOKEN }}
         
